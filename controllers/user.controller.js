@@ -128,7 +128,7 @@ async function updateUser(req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-function deleteUserByUsername(req, res) {
+async function deleteUserByUsername(req, res) {
     const username = { username: req.params.username };
     dbManager.User.destroy({ where: username }).then(
         data => {
@@ -153,7 +153,7 @@ function deleteUserByUsername(req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-function deleteAllUsers(req, res) {
+async function deleteAllUsers(req, res) {
     dbManager.User.destroy({ where: {} }).then(
         data => {
             console.log(data);
@@ -176,7 +176,7 @@ function deleteAllUsers(req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-function findAllUsersByCreatedDate(req, res) {
+async function findAllUsersByCreatedDate(req, res) {
     try {
         const fecha = { create_date: new Date(req.params.creation_date) };
 
