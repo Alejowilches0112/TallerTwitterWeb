@@ -56,6 +56,87 @@ async function findAllPost(req, res) {
     }
 }
 
+/** 
+ * * Get user by id 
+ * */
+async function findOnePost(req, res) {
+    try {
+        const { idPost } = req.params;
+        console.log(idPost);
+
+
+        //Execute query
+        const user = await dbManager.Post.findOne({
+            where: {
+                idPost: idPost
+            }
+        });
+        //Send response
+        res.json(user);
+
+
+    } catch (e) {
+        // Print error on console
+        console.log(e);
+        // Send error message as a response 
+        res.status(500).send({
+            message: "Some error occurred"
+        });
+    }
+}
+/**
+ * Delete an existen user by username
+ * @param {*} req 
+ * @param {*} res 
+ */
+function deletePostByidPost(req, res) {
+    dbManager.Post.destroy(
+        { where: { idPost: req.params.idPost } }
+    ).then(
+        data => {
+            console.log(data);
+            res.json(data);
+
+
+        }
+    ).catch(
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response 
+            res.status(500).send({
+                message: "Some error occurred"
+            });
+        }
+    );
+}
+
+
+async function findPostByUser(req, res) {
+    try {
+        //Execute query
+        const posts = await dbManager.Post.findAll(
+            { where: { idUser: req.params.idUser } }
+        );
+
+
+        //Send response
+        res.json({
+            data: posts
+        });
+
+
+    } catch (e) {
+        // Print error on console
+        console.log(e);
+        // Send error message as a response 
+        res.status(500).send({
+            message: "Some error occurred"
+        });
+    }
+}
+
+
 async function updatePost(req, res) {
     if (!req.body) {
         res.status(400).send({
