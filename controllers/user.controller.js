@@ -105,7 +105,7 @@ async function updateUser(req, res) {
     const idUser = { idUser: req.params.idUser };
 
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    dbManager.User.updateUser(updateUserObject, { where: idUser })
+    dbManager.User.update(updateUserObject, { where: idUser })
         .then(
             data => {
                 console.log(data);

@@ -90,14 +90,10 @@ async function findOnePost(req, res) {
  * @param {*} res 
  */
 function deletePostByidPost(req, res) {
-    dbManager.Post.destroy(
-        { where: { idPost: req.params.idPost } }
-    ).then(
+    dbManager.Post.destroy({ where: { idPost: req.params.idPost } }).then(
         data => {
             console.log(data);
             res.json(data);
-
-
         }
     ).catch(
         e => {
@@ -115,9 +111,7 @@ function deletePostByidPost(req, res) {
 async function findPostByUser(req, res) {
     try {
         //Execute query
-        const posts = await dbManager.Post.findAll(
-            { where: { idUser: req.params.idUser } }
-        );
+        const posts = await dbManager.Post.findAll({ where: { idUser: req.params.idUser } });
 
 
         //Send response
@@ -155,8 +149,7 @@ async function updatePost(req, res) {
 
 
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    dbManager.Post.updatePost(updatePostObject,
-        { where: { idPost: req.params.idPost } })
+    dbManager.Post.update(updatePostObject, { where: { idPost: req.params.idPost } })
         .then(
             data => {
                 console.log(data);
