@@ -17,7 +17,7 @@ async function createUser(req, res) {
     // CREATING THE OBJECT TO PERSIST
     const newUserObject = {
         username: req.body.username,
-        creation_date: req.body.creation_date
+        creation_date: new Date(req.body.creation_date)
     }
 
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
@@ -100,7 +100,7 @@ async function updateUser(req, res) {
     // CREATING THE OBJECT TO PERSIST
     const updateUserObject = {
         username: req.body.username,
-        creation_date: req.body.creation_date
+        creation_date: new Date(req.body.creation_date)
     }
     const idUser = { idUser: req.params.idUser };
 
